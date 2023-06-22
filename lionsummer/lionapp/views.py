@@ -21,3 +21,9 @@ def computer(request):
     language = random.choice(languages)
     context = {"language": language, "languages": languages}
     return render(request, "computer.html", context)
+
+
+def hi(request, name):  # 함수 안에 변수를 쓰려고 name을 적어 인자를 받음
+    context = {"name": name}
+    # 왼쪽 "name"이 html에서 {{}}안에 적는 문자와 같다, 오른쪽 name이 urls에 받아온 name과 같다
+    return render(request, "hi.html", context)
