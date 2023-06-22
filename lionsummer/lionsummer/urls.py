@@ -13,4 +13,6 @@ urlpatterns = [
     # 링크에 hi/안녕 이라고 치면 안녕에 오신걸 환영합니다 라고 뜬다
     path("add/<int:a>/<int:b>/", views.add),
     # int a와 int b를 추가하면 a+b가 출력되게 하는 실습, 어따 써먹지?
+    path("posts/<int:id>/", views.posts),
+    # variable값인 id를 넣으면 숫자를 하나하나 적을 필요가 없다
 ]

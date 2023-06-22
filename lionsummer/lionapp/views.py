@@ -33,3 +33,18 @@ def add(request, a, b):  # 인자 2개 추가도 가능하다
     result = a + b
     context = {"result": result}
     return render(request, "add.html", context)
+
+
+def posts(request, id):  # url에서 id로 지정했으면 view에서도 id로 지정해야 keyword인자로 작동시킬 수 있다
+    content = "Life is short, you need python!"
+    replies = ["유익!", "별로야", "많은 정보 얻어가요"]
+    no_replies = []
+    user = "haejun"
+    context = {
+        "id": id,
+        "replies": replies,
+        "no_replies": no_replies,
+        "content": content,
+        "user": user,
+    }
+    return render(request, "posts.html", context)

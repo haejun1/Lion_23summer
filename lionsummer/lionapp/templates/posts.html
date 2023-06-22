@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  {# 주석은 이렇게 적는다고 한다. 왠지 그냥 슬레시 쓰면 오류나드라 #}
+  <h1> {{id}}번째 글입니다.</h1>
+  <p>{{content}}</p>
+  <p>{{content|length}}</p> {#|은 filter을 의미#}
+  <p>{{content|truncatechars:10}}</p>
+  {#truncatechars:10은 글자수를 10까지만 출력#}
+  <hr>
+  <h2>댓글</h2>
+  <ul>
+    {%for reply in replies%}
+    <li>댓글 {{forloop.counter}}: {{reply}}</li>
+    {# forloop.counter로 인덱스를 쓴다 (ol써도 무관), 0부터 시작하고 싶다면 forloop.counter0 #}
+    {%empty%}
+    {#비어있는 배열 보내기#}
+    <p>댓글을 작성해주세요.</p>
+    {%endfor%}
+  </ul>
+  {%if user == 'haejun' %}
+  <p>수정, 삭제</p>
+  {% else %}
+  <p>관리자 권한이 없습니다.</p>
+  {%endif%}
+</body>
+
+</html>
