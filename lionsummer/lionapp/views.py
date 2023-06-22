@@ -27,3 +27,9 @@ def hi(request, name):  # 함수 안에 변수를 쓰려고 name을 적어 인�
     context = {"name": name}
     # 왼쪽 "name"이 html에서 {{}}안에 적는 문자와 같다, 오른쪽 name이 urls에 받아온 name과 같다
     return render(request, "hi.html", context)
+
+
+def add(request, a, b):  # 인자 2개 추가도 가능하다
+    result = a + b
+    context = {"result": result}
+    return render(request, "add.html", context)
