@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>프로그램 언어 추천</h1>
+  <h2>랜덤 추천결과는 {{language}}</h2>
+  <hr>
+  <p>언어의 종류는 {{languages}}가 있습니다</p>
+  <p>하나씩 나열해 보겠습니다</p>
+  <ul>
+    {%for language in languages %}
+    <li>{{language}}</li>
+    {%endfor%}
+  </ul>
+
+</body>
+
+</html>
