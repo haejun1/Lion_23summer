@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 # 기본경로
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +41,7 @@ ROOT_URLCONF = "lionsummer.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

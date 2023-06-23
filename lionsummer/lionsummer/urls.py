@@ -15,4 +15,6 @@ urlpatterns = [
     # int a와 int b를 추가하면 a+b가 출력되게 하는 실습, 어따 써먹지?
     path("posts/<int:id>/", views.posts),
     # variable값인 id를 넣으면 숫자를 하나하나 적을 필요가 없다
+    path("detail/", views.detail),
+    # DTL, ejs처럼 head등 반복되는 것 생략
 ]

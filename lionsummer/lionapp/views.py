@@ -48,3 +48,9 @@ def posts(request, id):  # url에서 id로 지정했으면 view에서도 id로 �
         "user": user,
     }
     return render(request, "posts.html", context)
+
+
+def detail(request):
+    test = "block body 사용해보기"
+    context = {"test": test}
+    return render(request, "detail.html", context)
