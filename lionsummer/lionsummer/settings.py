@@ -30,6 +30,7 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    # form 태그에서 POST로 보낼 때, 해킹을 방지하기 위한 csrf_token 기능을 수행
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -41,8 +42,11 @@ ROOT_URLCONF = "lionsummer.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
+        # BTL 엔진을 쓴다는 것
         "DIRS": [os.path.join(BASE_DIR, "templates")],
+        # 괄호안에는 경로를 적음, BASE_DIR은 최상위 위치, 경로 추가
         "APP_DIRS": True,
+        # templates 폴더 안의 html 파일들을 렌더 가능하게 한다
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
@@ -50,6 +54,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
+            # context처리를 유용하게 한다 (html에서 import안 써도 되게 함)
         },
     },
 ]
