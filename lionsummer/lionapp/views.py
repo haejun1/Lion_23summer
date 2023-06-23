@@ -1,5 +1,7 @@
-from django.shortcuts import render
 import random
+from django.shortcuts import render
+
+# import 순서 1. python에 내장된 것 / 2.django 내부에서 불러온 것 ex from django~ / 3. 내가 만든 파일 ex model 이나 url
 
 
 # Create your views here.
