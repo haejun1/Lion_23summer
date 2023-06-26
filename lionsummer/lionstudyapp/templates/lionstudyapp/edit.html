@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+{%block body%}
+<h2>Edit</h2>
+<form action="/{{article.pk}}/update/">
+  Title : <input type="text" name="title" value="{{article.title}}">
+  <br>
+  Content : <textarea name="content" cols="30" rows="15">{{article.content}}</textarea>
+  <br>
+  <input type="submit" value="Send">
+</form>
+<a href="/">Back</a>
+{%endblock%}
