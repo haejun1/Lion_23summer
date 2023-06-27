@@ -1,0 +1,10 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block body%}
+<h2>게시물 작성하기</h2>
+<form action="/create/" method='POST'>
+  {%csrf_token%}
+  {{form}}
+  <input type="submit" value="제출">
+</form>
+{%endblock%}
