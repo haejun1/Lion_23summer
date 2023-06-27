@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Lionstudyapp
 from .forms import LionstudyappForm
+from datetime import datetime
 
 
 # Create your views here.
@@ -18,14 +19,15 @@ def create(request):
     if request.method == "POST":
         form = LionstudyappForm(request.POST)
         if form.is_valid():
-            form = form.save()
-            # form되는지 확인
+            post = form.save(commit=False)
+            # post.created_at = datetime.now()
+            post.save()
             return redirect("/")
-            # 확인
+        else:
+            return redirect("/")
     else:
         form = LionstudyappForm()
-    context = {"form": form}
-    return render(request, "lionstudyapp/new.html", context)
+        return render(request, "create.html", {"form": form})
 
 
 def detail(request, pk):
@@ -53,5 +55,4 @@ def update(request, pk):
     article.title = title
     article.content = content
     article.save()
-
     return redirect(f"/{article.pk}/")
