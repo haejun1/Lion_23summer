@@ -18,6 +18,7 @@ def create(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.created_at = datetime.now()
+            post.user = request.user
             post.save()
             return redirect("index")
         else:
@@ -46,6 +47,7 @@ def update(request, pk):
         form = LionstudyappForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
+            post.user = request.user
             post.save()
             return redirect("detail", pk=post.pk)
         else:
