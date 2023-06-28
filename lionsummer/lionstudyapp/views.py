@@ -12,10 +12,6 @@ def index(request):
     return render(request, "lionstudyapp/index.html", context)
 
 
-def new(request):
-    return render(request, "lionstudyapp/create.html")
-
-
 def create(request):
     if request.method == "POST":
         form = LionstudyappForm(request.POST)
@@ -25,7 +21,7 @@ def create(request):
             post.save()
             return redirect("index")
         else:
-            messages.error(request, "폼이 유요하지 않습니다.")
+            messages.error(request, "폼이 유효하지 않습니다.")
     else:
         form = LionstudyappForm()
         return render(request, "lionstudyapp/create.html", {"form": form})
@@ -44,17 +40,17 @@ def delete(request, pk):
     return redirect("/")
 
 
-def edit(request, pk):
-    article = Lionstudyapp.objects.get(pk=pk)
-    context = {"article": article}
-    return render(request, "lionstudyapp/edit.html", context)
-
-
 def update(request, pk):
-    article = Lionstudyapp.objects.get(pk=pk)
-    title = request.GET.get("title")
-    content = request.GET.get("content")
-    article.title = title
-    article.content = content
-    article.save()
-    return redirect(f"/{article.pk}/")
+    post = get_object_or_404(Lionstudyapp, pk=pk)
+    if request.method == "POST":
+        form = LionstudyappForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect("detail", pk=post.pk)
+        else:
+            messages.error(request, "폼이 유효하지 않습니다.")
+    else:
+        form = LionstudyappForm(instance=post)
+        return render(request, "lionstudyapp/edit.html", {"form": form})
+    return render(request, "lionstudyapp/edit.html", {"form": form})
