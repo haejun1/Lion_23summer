@@ -17,4 +17,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("lionapp/", include("lionapp.urls")),
     path("", include("lionstudyapp.urls")),
+    path("accounts/", include("accounts.urls")),
 ]
