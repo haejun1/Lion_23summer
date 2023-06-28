@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Lionstudyapp
-from .forms import LionstudyappForm
+from .models import Lionstudyapp, Comment
+from .forms import LionstudyappForm, CommentForm
 from datetime import datetime
 from django.contrib import messages
+from django.views.decorators.http import require_POST
 
 
 # Create your views here.
@@ -31,7 +32,8 @@ def create(request):
 
 def detail(request, pk):
     article = get_object_or_404(Lionstudyapp, pk=pk)
-    context = {"article": article}
+    form = CommentForm()
+    context = {"article": article, "form": form}
     return render(request, "lionstudyapp/detail.html", context)
 
 
@@ -60,3 +62,19 @@ def update(request, pk):
     else:
         return redirect("index")
     return render(request, "lionstudyapp/edit.html", {"form": form})
+
+
+@require_POST
+def comments_create(request, pk):
+    if request.user.is_authenticated:
+        article = get_object_or_404(Lionstudyapp, pk=pk)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.article = article
+            comment.save()
+        return redirect("detail", article.pk)
+    else:
+        messages.warning(request, "댓글 작성을 위해서는 로그인이 필요합니다.")
+        return redirect("accounts:login")

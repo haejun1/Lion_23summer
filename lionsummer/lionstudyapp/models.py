@@ -13,7 +13,7 @@ class Lionstudyapp(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
 
 
-class Commnet(models.Model):
+class Comment(models.Model):
     content = models.TextField()
     article = models.ForeignKey(Lionstudyapp, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
