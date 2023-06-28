@@ -37,22 +37,26 @@ def detail(request, pk):
 
 def delete(request, pk):
     post = get_object_or_404(Lionstudyapp, pk=pk)
-    post.delete()
+    if request.user == post.user:
+        post.delete()
     return redirect("index")
 
 
 def update(request, pk):
     post = get_object_or_404(Lionstudyapp, pk=pk)
-    if request.method == "POST":
-        form = LionstudyappForm(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user
-            post.save()
-            return redirect("detail", pk=post.pk)
+    if request.user == post.user:
+        if request.method == "POST":
+            form = LionstudyappForm(request.POST, instance=post)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.user = request.user
+                post.save()
+                return redirect("detail", pk=post.pk)
+            else:
+                messages.error(request, "폼이 유효하지 않습니다.")
         else:
-            messages.error(request, "폼이 유효하지 않습니다.")
+            form = LionstudyappForm(instance=post)
+            return render(request, "lionstudyapp/edit.html", {"form": form})
     else:
-        form = LionstudyappForm(instance=post)
-        return render(request, "lionstudyapp/edit.html", {"form": form})
+        return redirect("index")
     return render(request, "lionstudyapp/edit.html", {"form": form})
