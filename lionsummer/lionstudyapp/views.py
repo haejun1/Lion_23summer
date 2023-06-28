@@ -35,9 +35,9 @@ def detail(request, pk):
 
 
 def delete(request, pk):
-    article = Lionstudyapp.objects.get(pk=pk)
-    article.delete()
-    return redirect("/")
+    post = get_object_or_404(Lionstudyapp, pk=pk)
+    post.delete()
+    return redirect("index")
 
 
 def update(request, pk):
