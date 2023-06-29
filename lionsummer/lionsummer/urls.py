@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include  # include를 포함시킴으로 url을 분리할 수 있다
+from django.conf.urls.static import static
+from django.conf import settings
 
 from lionapp import views  # lionapp파일 안에 있는 views를 가져온다
 from lionstudyapp import views
@@ -18,4 +20,4 @@ urlpatterns = [
     path("lionapp/", include("lionapp.urls")),
     path("", include("lionstudyapp.urls")),
     path("accounts/", include("accounts.urls")),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

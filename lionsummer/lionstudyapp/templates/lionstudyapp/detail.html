@@ -1,9 +1,12 @@
 {%extends 'base.html'%}
+{% load static %}
 {%block body%}
 <h2>Detail</h2>
 <h1>제목 : {{article.title}}</h1>
 <p>작성자 : {{article.user}}</p>
 <p>내용 : {{article.content}}</p>
+<p>이미지 : </p>
+{#<img src="{{ article.imgfile.url }}" alt="이미지">#}
 <p>작성일자 : {{article.created_at}}</p>
 <p>수정일자 : {{article.updated_at}}</p>
 {%if article.user == request.user%}
