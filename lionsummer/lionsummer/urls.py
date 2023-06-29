@@ -19,4 +19,5 @@ urlpatterns = [
     path("lionapp/", include("lionapp.urls")),
     path("", include("lionstudyapp.urls")),
     path("accounts/", include("accounts.urls")),
+    path("maps/", include("maps.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

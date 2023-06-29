@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "lionapp",
     "lionstudyapp",
     "accounts",
+    "maps",
 ]
 
 MIDDLEWARE = [
