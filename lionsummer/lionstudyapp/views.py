@@ -15,7 +15,7 @@ def index(request):
 
 def create(request):
     if request.method == "POST":
-        form = LionstudyappForm(request.POST)
+        form = LionstudyappForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.created_at = datetime.now()
@@ -48,7 +48,7 @@ def update(request, pk):
     post = get_object_or_404(Lionstudyapp, pk=pk)
     if request.user == post.user:
         if request.method == "POST":
-            form = LionstudyappForm(request.POST, instance=post)
+            form = LionstudyappForm(request.POST, request.FILES, instance=post)
             if form.is_valid():
                 post = form.save(commit=False)
                 post.user = request.user

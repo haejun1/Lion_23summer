@@ -6,7 +6,7 @@
 <p>작성자 : {{article.user}}</p>
 <p>내용 : {{article.content}}</p>
 <p>이미지 : </p>
-{#<img src="{{ article.imgfile.url }}" alt="이미지">#}
+<img src="{{ article.image.url }}" alt="{{article.image}}">
 <p>작성일자 : {{article.created_at}}</p>
 <p>수정일자 : {{article.updated_at}}</p>
 {%if article.user == request.user%}

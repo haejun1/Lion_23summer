@@ -5,7 +5,7 @@ from .models import Lionstudyapp, Comment
 class LionstudyappForm(forms.ModelForm):
     class Meta:
         model = Lionstudyapp
-        fields = ["title", "content", "imgfile"]
+        fields = ["title", "content", "image"]
 
 
 class CommentForm(forms.ModelForm):
